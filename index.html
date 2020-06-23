@@ -138,49 +138,21 @@
 
 		[document.getElementById("70"), document.getElementById("71"), document.getElementById("72"), document.getElementById("73"), document.getElementById("74"), document.getElementById("75"), document.getElementById("76"), document.getElementById("77")]
 	]
-	/*for (let y in fields){
-		for (let x in fields[y]){
-			fields[y][x].onclick = function() {
-				x = Number(x);
-				y = Number(y);
-				removeHorse();
-				this.innerHTML = `<img src="knight.png">`;
-				if (y - 2 >= 0 && x - 1 >= 0){
-					fields[y-2][x-1].className += " or";
-				}
-				if (y - 2 >= 0 && x + 1 <= 7){
-					fields[y-2][x+1].className += " or";
-				}
-				if (y + 2 <= 7 && x - 1 >= 0){
-					fields[y+2][x-1].className += " or";
-				}
-				if (y + 2 <= 7 && x + 1 <= 7){
-					fields[y+2][x+1].className += " or";
-				}
-				if (y - 1 >= 0 && x - 2 >= 0){
-					fields[y-1][x-2].className += " or";
-				}
-				if (y + 1 <= 7 && x - 2 >= 0){
-					fields[y+1][x-2].className += " or";
-				}
-				if (y - 1 >= 0 && x + 2 <= 7){
-					fields[y-1][x+2].className += " or";
-				}
-				if (y + 1 <= 7 && x + 2 <= 7){
-					fields[y+1][x+2].className += " or";
-				}
+
+	document.body.onclick = () => {
+		for (let i in fields){
+			for (let i2 in fields){
+				fields[i][i2].className = fields[i][i2].className.substr(0,2);
+				fields[i][i2].innerHTML = "";
 			}
 		}
-	}*/
-	document.body.onclick = () => {
-		if (event.target == document.body){
-			cleaner();
-		}else{
+
+
+		if (event.target != document.body){
 			for (let y in fields){
 				for (let x in fields[y]){
 					if (event.target == fields[y][x]) {
-						cleaner();
-						
+
 						x = Number(x);
 						y = Number(y);
 
@@ -211,14 +183,6 @@
 						}
 					}
 				}
-			}
-		}
-	}
-	function cleaner() {
-		for (let i in fields){
-			for (let i2 in fields){
-				fields[i][i2].className = fields[i][i2].className.substr(0,2);
-				fields[i][i2].innerHTML = "";
 			}
 		}
 	}
