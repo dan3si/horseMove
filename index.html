@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<section class="desk">
+		<div id="00" class="wh"></div>
+		<div id="01" class="bl"></div>
+		<div id="02" class="wh"></div>
+		<div id="03" class="bl"></div>
+		<div id="04" class="wh"></div>
+		<div id="05" class="bl"></div>
+		<div id="06" class="wh"></div>
+		<div id="07" class="bl"></div>
+		<div id="10" class="bl"></div>
+		<div id="11" class="wh"></div>
+		<div id="12" class="bl"></div>
+		<div id="13" class="wh"></div>
+		<div id="14" class="bl"></div>
+		<div id="15" class="wh"></div>
+		<div id="16" class="bl"></div>
+		<div id="17" class="wh"></div>
+		<div id="20" class="wh"></div>
+		<div id="21" class="bl"></div>
+		<div id="22" class="wh"></div>
+		<div id="23" class="bl"></div>
+		<div id="24" class="wh"></div>
+		<div id="25" class="bl"></div>
+		<div id="26" class="wh"></div>
+		<div id="27" class="bl"></div>
+		<div id="30" class="bl"></div>
+		<div id="31" class="wh"></div>
+		<div id="32" class="bl"></div>
+		<div id="33" class="wh"></div>
+		<div id="34" class="bl"></div>
+		<div id="35" class="wh"></div>
+		<div id="36" class="bl"></div>
+		<div id="37" class="wh"></div>
+		<div id="40" class="wh"></div>
+		<div id="41" class="bl"></div>
+		<div id="42" class="wh"></div>
+		<div id="43" class="bl"></div>
+		<div id="44" class="wh"></div>
+		<div id="45" class="bl"></div>
+		<div id="46" class="wh"></div>
+		<div id="47" class="bl"></div>
+		<div id="50" class="bl"></div>
+		<div id="51" class="wh"></div>
+		<div id="52" class="bl"></div>
+		<div id="53" class="wh"></div>
+		<div id="54" class="bl"></div>
+		<div id="55" class="wh"></div>
+		<div id="56" class="bl"></div>
+		<div id="57" class="wh"></div>
+		<div id="60" class="wh"></div>
+		<div id="61" class="bl"></div>
+		<div id="62" class="wh"></div>
+		<div id="63" class="bl"></div>
+		<div id="64" class="wh"></div>
+		<div id="65" class="bl"></div>
+		<div id="66" class="wh"></div>
+		<div id="67" class="bl"></div>
+		<div id="70" class="bl"></div>
+		<div id="71" class="wh"></div>
+		<div id="72" class="bl"></div>
+		<div id="73" class="wh"></div>
+		<div id="74" class="bl"></div>
+		<div id="75" class="wh"></div>
+		<div id="76" class="bl"></div>
+		<div id="77" class="wh"></div>
+	</section>
+</body>
+<style>
+	body{
+		background: #3d3d3d;
+		height: 100vh;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.desk{
+		height: 40vw;
+		width: 40vw;
+		display: grid;
+		grid-template-columns: repeat(8, 1fr);
+		grid-template-rows: repeat(8, 1fr);
+		border: 1px solid black;
+	}
+	div{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.wh{
+		background: #e6e3e3;
+	}
+	.bl{
+		background: black;
+	}
+	.or{
+		background: #f2961d;
+	}
+	.knight{
+		background: url(knight.png) center no-repeat;
+		background-size: 100%;
+	}
+	img{
+		height: 4vw;
+	}
+</style>
+<script>
+	let fields = [
+		[document.getElementById("00"), document.getElementById("01"), document.getElementById("02"), document.getElementById("03"), document.getElementById("04"), document.getElementById("05"), document.getElementById("06"), document.getElementById("07")],
+
+
+		[document.getElementById("10"), document.getElementById("11"), document.getElementById("12"), document.getElementById("13"), document.getElementById("14"), document.getElementById("15"), document.getElementById("16"), document.getElementById("17")],
+
+
+		[document.getElementById("20"), document.getElementById("21"), document.getElementById("22"), document.getElementById("23"), document.getElementById("24"), document.getElementById("25"), document.getElementById("26"), document.getElementById("27")],
+
+
+		[document.getElementById("30"), document.getElementById("31"), document.getElementById("32"), document.getElementById("33"), document.getElementById("34"), document.getElementById("35"), document.getElementById("36"), document.getElementById("37")],
+
+
+		[document.getElementById("40"), document.getElementById("41"), document.getElementById("42"), document.getElementById("43"), document.getElementById("44"), document.getElementById("45"), document.getElementById("46"), document.getElementById("47")],
+
+
+		[document.getElementById("50"), document.getElementById("51"), document.getElementById("52"), document.getElementById("53"), document.getElementById("54"), document.getElementById("55"), document.getElementById("56"), document.getElementById("57")],
+
+
+		[document.getElementById("60"), document.getElementById("61"), document.getElementById("62"), document.getElementById("63"), document.getElementById("64"), document.getElementById("65"), document.getElementById("66"), document.getElementById("67")],
+
+
+		[document.getElementById("70"), document.getElementById("71"), document.getElementById("72"), document.getElementById("73"), document.getElementById("74"), document.getElementById("75"), document.getElementById("76"), document.getElementById("77")]
+	]
+	for (let y in fields){
+		for (let x in fields[y]){
+			fields[y][x].onclick = function() {
+				x = Number(x);
+				y = Number(y);
+				removeHorse();
+				this.innerHTML = `<img src="knight.png">`;
+				if (y - 2 >= 0 && x - 1 >= 0){
+					fields[y-2][x-1].className += " or";
+				}
+				if (y - 2 >= 0 && x + 1 <= 7){
+					fields[y-2][x+1].className += " or";
+				}
+				if (y + 2 <= 7 && x - 1 >= 0){
+					fields[y+2][x-1].className += " or";
+				}
+				if (y + 2 <= 7 && x + 1 <= 7){
+					fields[y+2][x+1].className += " or";
+				}
+				if (y - 1 >= 0 && x - 2 >= 0){
+					fields[y-1][x-2].className += " or";
+				}
+				if (y + 1 <= 7 && x - 2 >= 0){
+					fields[y+1][x-2].className += " or";
+				}
+				if (y - 1 >= 0 && x + 2 <= 7){
+					fields[y-1][x+2].className += " or";
+				}
+				if (y + 1 <= 7 && x + 2 <= 7){
+					fields[y+1][x+2].className += " or";
+				}
+			}
+		}
+	}
+	document.body.onclick = () => {
+		if (event.target == document.body){
+			removeHorse();
+		}
+	}
+	function removeHorse() {
+		for (let i in fields){
+			for (let i2 in fields){
+				fields[i][i2].className = fields[i][i2].className.substr(0,2);
+				fields[i][i2].innerHTML = "";
+			}
+		}
+		console.log("сработало")
+	}
+</script>
+</html>
